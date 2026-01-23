@@ -16,6 +16,7 @@ const USERS = generarUsuarios();
 export default function App() {
   const [search, setSearch] = useState("");
 
+  // ✅ useMemo SOLO PARA EL FILTRO CARO
   const filteredUsers = useMemo(() => {
     return USERS.filter(user =>
       user.name.toLowerCase().includes(search.toLowerCase()) ||

@@ -1,27 +1,25 @@
 import { useState } from "react";
 import ToastContainer from "./components/ToastContainer";
-import { useCallback } from "react";
-
 
 let idCounter = 1;
 
 export default function App() {
   const [errors, setErrors] = useState([]);
 
-  const addError = useCallback(() => {
+  const addError = () => {
     setErrors(prev => [
       ...prev,
       { id: idCounter++, message: "Error aleatorio " + idCounter }
     ]);
-  }, []);
+  };
 
-  const clearError = useCallback((id) => {
+  const clearError = (id) => {
     setErrors(prev => prev.filter(error => error.id !== id));
-  }, []);
+  };
 
-  const clearAll = useCallback(() => {
+  const clearAll = () => {
     setErrors([]);
-  }, []);
+  };
 
   return (
     <div>

@@ -1,4 +1,4 @@
-import { useState, useMemo } from "react";
+import { useState } from "react";
 import SearchInput from "./components/SearchInput";
 import UserList from "./components/UserList";
 
@@ -16,12 +16,11 @@ const USERS = generarUsuarios();
 export default function App() {
   const [search, setSearch] = useState("");
 
-  const filteredUsers = useMemo(() => {
-    return USERS.filter(user =>
-      user.name.toLowerCase().includes(search.toLowerCase()) ||
-      user.email.toLowerCase().includes(search.toLowerCase())
-    );
-  }, [search]);
+  // ❌ FILTRO CARO SIN MEMO
+  const filteredUsers = USERS.filter(user =>
+    user.name.toLowerCase().includes(search.toLowerCase()) ||
+    user.email.toLowerCase().includes(search.toLowerCase())
+  );
 
   return (
     <div>
