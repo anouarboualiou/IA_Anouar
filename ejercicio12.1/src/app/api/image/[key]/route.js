@@ -1,6 +1,8 @@
 import fs from "fs";
 import path from "path";
 
+export const runtime = "nodejs";
+
 export async function GET(req, { params }) {
 
   const { key } = await params;

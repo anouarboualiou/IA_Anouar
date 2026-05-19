@@ -8,6 +8,8 @@ import { groq } from "@/lib/groq";
 
 import { connectDB } from "@/lib/mongodb";
 
+export const runtime = "nodejs";
+
 export async function POST(req) {
 
   try {
