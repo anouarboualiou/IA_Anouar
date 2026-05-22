@@ -133,6 +133,8 @@ export default function Home() {
               key={img._id}
             >
 
+              <p>{img.url}</p>
+
                <img
                   src={img.url}
                   alt=""

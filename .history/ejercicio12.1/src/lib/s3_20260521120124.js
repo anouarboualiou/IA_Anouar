@@ -1,7 +1,7 @@
 import { S3Client } from "@aws-sdk/client-s3";
 
 const s3 = new S3Client({
-  region: "auto",
+  region: "us-east-1",
 
   endpoint: process.env.S3_ENDPOINT,
 
@@ -9,8 +9,6 @@ const s3 = new S3Client({
     accessKeyId: process.env.S3_ACCESS_KEY,
     secretAccessKey: process.env.S3_SECRET_KEY,
   },
-
-  forcePathStyle: true,
 });
 
 export default s3;

@@ -11,14 +11,6 @@ import s3 from "@/lib/s3";
 
 import groq from "@/lib/groq";
 
-
-import {
-  GetObjectCommand
-} from "@aws-sdk/client-s3";
-
-import { getSignedUrl }
-from "@aws-sdk/s3-request-presigner";
-
 export async function POST(req) {
 
   try {
@@ -49,26 +41,17 @@ export async function POST(req) {
     // ==========================
 
     await s3.send(
-      new PutObjectCommand({
-        Bucket: process.env.S3_BUCKET,
-        Key: filename,
-        Body: buffer,
-        ContentType: file.type,
+  new PutObjectCommand({
+    Bucket: process.env.S3_BUCKET,
+    Key: filename,
+    Body: buffer,
+    ContentType: file.type,
 
-        ACL: "public-read",
-      })
-    );
+    ACL: "public-read",
+  })
+);
 
-    const imageUrl = await getSignedUrl(
-      s3,
-      new GetObjectCommand({
-        Bucket: process.env.S3_BUCKET,
-        Key: filename,
-      }),
-      {
-        expiresIn: 3600,
-      }
-    );
+    const imageUrl = `https://${process.env.S3_BUCKET}.s3.filebase.io/${filename}`;
 
     // ==========================
     // IA GROQ

@@ -1,3 +1,6 @@
+// ===============================
+// src/app/api/upload/route.js
+// ===============================
 
 import { v4 as uuidv4 } from "uuid";
 
@@ -10,14 +13,6 @@ import Image from "@/models/Image";
 import s3 from "@/lib/s3";
 
 import groq from "@/lib/groq";
-
-
-import {
-  GetObjectCommand
-} from "@aws-sdk/client-s3";
-
-import { getSignedUrl }
-from "@aws-sdk/s3-request-presigner";
 
 export async function POST(req) {
 
@@ -54,21 +49,11 @@ export async function POST(req) {
         Key: filename,
         Body: buffer,
         ContentType: file.type,
-
-        ACL: "public-read",
       })
     );
 
-    const imageUrl = await getSignedUrl(
-      s3,
-      new GetObjectCommand({
-        Bucket: process.env.S3_BUCKET,
-        Key: filename,
-      }),
-      {
-        expiresIn: 3600,
-      }
-    );
+    const imageUrl =
+      `${process.env.S3_ENDPOINT}/${process.env.S3_BUCKET}/${filename}`;
 
     // ==========================
     // IA GROQ

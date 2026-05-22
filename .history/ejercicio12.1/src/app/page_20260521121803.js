@@ -133,17 +133,19 @@ export default function Home() {
               key={img._id}
             >
 
+              <p>{img.url}</p>
+
                <img
-                  src={img.url}
-                  alt=""
-                  style={{
-                    width: "100%",
-                    height: "300px",
-                    objectFit: "cover",
-                    display: "block",
-                    background: "red"
-                  }}
-                />
+    src={img.url}
+    alt=""
+    style={{
+      width: "100%",
+      height: "300px",
+      objectFit: "cover",
+      display: "block",
+      background: "red"
+    }}
+  />
 
               <h3>
                 Objetos detectados
